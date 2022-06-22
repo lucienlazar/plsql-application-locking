@@ -1,6 +1,6 @@
-# plsql-application-locking
+# PL/SQL Application Locking
 
-plsql-application-locking is a core PL/SQL framework that implements logical locking of objects at application level. You can download and integrate it free in your application. For a custom and complex implementation please check the <a href="https://github.com/lucienlazar/plsql-application-locking#hire-me">Hire Me section</a> and contact me at https://www.lucianlazar.com/.
+PL/SQL Application Locking is a core PL/SQL framework that implements logical locking of objects at application level. You can download and integrate it free in your application. For a custom and complex implementation please check the <a href="https://github.com/lucienlazar/plsql-application-locking#hire-me">Hire Me section</a> and contact me at https://www.lucianlazar.com/.
 
 # Context
 
@@ -10,7 +10,7 @@ A multi-user application must control concurrency, the simultaneous access of th
 
 Instead of counting only on locks set by the database, it is more efficient to use explicit locking at application level. When the application starts a process that needs an object, we mark the object as locked manually at the correct point in time by explicit calls from the client. When the application finishes the process and does not need the object, it removes the lock. It is a simple and efficient usage of locking that reduces the database load and ensures consistency and performance.
 
-# plsql-application-locking framework
+# PL/SQL Application Locking Framework
 
 The framework consists in two tables: process runs and application locks and two packages: processing and application locking. This section explains the essential characteristics of the objects and has links to the wiki with technical details of the structure, parameters and logic.
 
@@ -39,7 +39,7 @@ You can download and integrate free the plsql-application-locking framework in y
 Contact me on my website https://www.lucianlazar.com/ for any consulting enquiries. 
 
 I can provide custom and complex implementations with advanced features like:
-* Extended acquire lock procedure with serializing access to resources, handling concurrency issues, adding retry modes and exception handling
-* Change lock procedure that allows upgrading or downgrading a lock
-* Extended procedure to release orphan locks on resource including exception handling, performance tweaks and more possible release conditions
-* Release all orphan locks procedure, called as part of a clean-up process in case of emergency.
+* extended acquire lock procedure with serializing access to resources, handling concurrency issues, adding retry modes and exception handling
+* change lock procedure that allows upgrading or downgrading a lock
+* extended procedure to release orphan locks on resource including exception handling, performance tweaks and more possible release conditions
+* release all orphan locks procedure, called as part of a clean-up process in case of emergency.
