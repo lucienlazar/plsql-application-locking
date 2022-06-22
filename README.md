@@ -1,6 +1,6 @@
 # application-locking
 
-application-locking is a core PL/SQL framework that implements logical locking of objects at application level. You can download and integrate it free in your application. For a custom and complex implementation please check the Hire Me section and contact me at https://www.lucianlazar.com/.
+application-locking is a core PL/SQL framework that implements logical locking of objects at application level. You can download and integrate it free in your application. For a custom and complex implementation please check the <a href="https://github.com/lucienlazar/application-locking#hire-me">Hire Me section</a> and contact me at https://www.lucianlazar.com/.
 
 # Context
 
@@ -14,15 +14,15 @@ Instead of counting only on locks set by the database, it is more efficient to u
 
 The framework consists in two tables: process runs and application locks and two packages: processing and application locking. This section explains the essential characteristics of the objects and has links to the wiki with technical details of the structure, parameters and logic.
 
-The process runs table and the processing package are generic and can map to existing objects in your application. The process runs table stores process runs identified uniquely by a run id and having as attributes start time, end time and a run status that can be running, completed successfully or failed. The processing package has two procedures: start process that starts a process with status running and end process that completes a process run and updates its status to successful or failed.
+The process runs table and the processing package are generic and can map to existing objects in your application. The <a href="https://github.com/lucienlazar/application-locking/wiki/Process-Runs-Table">process runs table</a> stores process runs identified uniquely by a run id and having as attributes start time, end time and a run status that can be running, completed successfully or failed. The <a href="https://github.com/lucienlazar/application-locking/wiki/Processing-Package">processing package</a> has two procedures: start process that starts a process with status running and end process that completes a process run and updates its status to successful or failed.
 
-The application locks table is the core of the framework and stores the logical locks set by the client. A lock is identified uniquely by a lock id, is set on a certain object, by a certain process run id and can have three modes: shared, write exclusive or full exclusive. 
+The <a href="https://github.com/lucienlazar/application-locking/wiki/Application-Locks-Table">application locks table</a> is the core of the framework and stores the logical locks set by the client. A lock is identified uniquely by a lock id, is set on a certain object, by a certain process run id and can have three modes: shared, write exclusive or full exclusive. 
 
-The application locking package contains the logic of the framework encapsulated in four procedures: acquire lock that adds a logical lock to a certain object by a certain run id, respecting an algorithm that allows upgrading certain lock modes, release locks that deletes the locks at the end of a process, get locks that lists the locks on a certain object and release orphan locks that deletes orphan locks on a certain resource left by completed process runs.
+The <a href="https://github.com/lucienlazar/application-locking/wiki/Application-locking-package">application locking package</a> contains the logic of the framework encapsulated in four procedures: acquire lock that adds a logical lock to a certain object by a certain run id, respecting an <a href="https://github.com/lucienlazar/application-locking/wiki/Acquire-Lock-Algorithm">algorithm</a> that allows upgrading certain lock modes, release locks that deletes the locks at the end of a process, get locks that lists the locks on a certain object and release orphan locks that deletes orphan locks on a certain resource left by completed process runs.
 
 # Download and Install
 
-You can download the objects.sql script that creates all the objects contained by the framework. 
+You can download the <a href="https://github.com/lucienlazar/application-locking/blob/main/objects.sql">objects.sql</a> script that creates all the objects contained by the framework. For technical details about the usage of all procedures check the <a href="https://github.com/lucienlazar/application-locking/wiki/Objects">objects page</a> in wiki. 
 
 You can replace the process runs table and the processing package with existing objects in your application and replace their references in the application locking package. 
 
