@@ -22,13 +22,13 @@ The <a href="https://github.com/lucienlazar/application-locking/wiki/Application
 
 # Download and Install
 
-You can download the <a href="https://github.com/lucienlazar/application-locking/blob/main/objects.sql">objects.sql</a> script that creates all the objects contained by the framework. For technical details about the usage of all procedures check the <a href="https://github.com/lucienlazar/application-locking/wiki/Objects">objects page</a> in wiki. 
+You can download and run the <a href="https://github.com/lucienlazar/application-locking/blob/main/objects.sql">objects.sql</a> script that creates all the objects contained by the framework. For technical details about the usage of all procedures check the <a href="https://github.com/lucienlazar/application-locking/wiki/Objects">objects page</a> in wiki. 
 
 You can replace the process runs table and the processing package with existing objects in your application and replace their references in the application locking package. 
 
 # Test Cases
 
-You can download the testcases.sql script that contains examples of using the framework and handle concurrent scenarios. The wiki contains more technical details about the flows in the testing scenarios.
+You can download and check the testcases.sql script that contains examples of using the framework and handle concurrent scenarios. The wiki contains more technical details about the flows in the testing scenarios.
 
 # License
 
@@ -39,8 +39,7 @@ You can download and integrate free the application-locking framework in your PL
 Contact me on my website https://www.lucianlazar.com/ for any consulting enquiries. 
 
 I can provide custom and complex implementations with advanced features like:
-Extended acquire lock procedure with serializing access to resources, handling concurrency issues, adding retry modes and exception handling
-Change lock procedure that allows upgrading or downgrading a lock
-Extended procedure to release orphan locks on resource including exception handling, performance tweaks and more possible release conditions
-Release all orphan locks procedure that tries to release all orphan locks in the system. It will be called as part of a clean-up process in case of emergency.
-
+* Extended acquire lock procedure with serializing access to resources, handling concurrency issues, adding retry modes and exception handling
+* Change lock procedure that allows upgrading or downgrading a lock
+* Extended procedure to release orphan locks on resource including exception handling, performance tweaks and more possible release conditions
+* Release all orphan locks procedure, called as part of a clean-up process in case of emergency.
