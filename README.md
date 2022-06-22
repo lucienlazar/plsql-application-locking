@@ -1,0 +1,46 @@
+# application-locking
+
+application-locking is a core PL/SQL framework that implements logical locking of objects at application level. You can download and integrate it free in your application. For a custom and complex implementation please check the Hire Me section and contact me at https://www.lucianlazar.com/.
+
+# Context
+
+A multi-user application must control concurrency, the simultaneous access of the same data by many users, in order to ensure consistency and performance.
+
+# Solution
+
+Instead of counting only on locks set by the database, it is more efficient to use explicit locking at application level. When the application starts a process that needs an object, we mark the object as locked manually at the correct point in time by explicit calls from the client. When the application finishes the process and does not need the object, it removes the lock. It is a simple and efficient usage of locking that reduces the database load and ensures consistency and performance.
+
+# application-locking framework
+
+The framework consists in two tables: process runs and application locks and two packages: processing and application locking. This section explains the essential characteristics of the objects and has links to the wiki with technical details of the structure, parameters and logic.
+
+The process runs table and the processing package are generic and can map to existing objects in your application. The process runs table stores process runs identified uniquely by a run id and having as attributes start time, end time and a run status that can be running, completed successfully or failed. The processing package has two procedures: start process that starts a process with status running and end process that completes a process run and updates its status to successful or failed.
+
+The application locks table is the core of the framework and stores the logical locks set by the client. A lock is identified uniquely by a lock id, is set on a certain object, by a certain process run id and can have three modes: shared, write exclusive or full exclusive. 
+
+The application locking package contains the logic of the framework encapsulated in four procedures: acquire lock that adds a logical lock to a certain object by a certain run id, respecting an algorithm that allows upgrading certain lock modes, release locks that deletes the locks at the end of a process, get locks that lists the locks on a certain object and release orphan locks that deletes orphan locks on a certain resource left by completed process runs.
+
+# Download and Install
+
+You can download the objects.sql script that creates all the objects contained by the framework. 
+
+You can replace the process runs table and the processing package with existing objects in your application and replace their references in the application locking package. 
+
+# Test Cases
+
+You can download the testcases.sql script that contains examples of using the framework and handle concurrent scenarios. The wiki contains more technical details about the flows in the testing scenarios.
+
+# License
+
+You can download and integrate free the application-locking framework in your PL/SQL code and in your application. 
+
+# Hire Me
+
+Contact me on my website https://www.lucianlazar.com/ for any consulting enquiries. 
+
+I can provide custom and complex implementations with advanced features like:
+Extended acquire lock procedure with serializing access to resources, handling concurrency issues, adding retry modes and exception handling
+Change lock procedure that allows upgrading or downgrading a lock
+Extended procedure to release orphan locks on resource including exception handling, performance tweaks and more possible release conditions
+Release all orphan locks procedure that tries to release all orphan locks in the system. It will be called as part of a clean-up process in case of emergency.
+
