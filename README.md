@@ -16,7 +16,7 @@ Instead of counting only on locks set by the database, it is more efficient to u
 
 # PL/SQL Application Locking Framework
 
-The framework consists in two tables: process runs and application locks and two packages: processing and application locking. This section explains the essential characteristics of the objects and has links to the wiki with technical details of the structure, parameters and logic.
+The framework consists in two tables: process runs and application locks and two packages: processing and application locking. This section explains the essential characteristics of the objects and has links to the <a href="https://github.com/lucienlazar/plsql-application-locking/wiki">wiki</a> with technical details of the structure, parameters and logic.
 
 The process runs table and the processing package are generic and can map to existing objects in your application. The <a href="https://github.com/lucienlazar/plsql-application-locking/wiki/Process-Runs-Table">process runs table</a> stores process runs identified uniquely by a run id and having as attributes start time, end time and a run status that can be running, completed successfully or failed. The <a href="https://github.com/lucienlazar/plsql-application-locking/wiki/Processing-Package">processing package</a> has two procedures: start process that starts a process with status running and end process that completes a process run and updates its status to successful or failed.
 
@@ -30,9 +30,9 @@ You can download and run the <a href="https://github.com/lucienlazar/plsql-appli
 
 You can replace the process runs table and the processing package with existing objects in your application and replace their references in the application locking package. 
 
-# Test Cases
+# Demo
 
-You can download and check the testcases.sql script that contains examples of using the framework and handle concurrent scenarios. The wiki contains more technical details about the flows in the testing scenarios.
+You can download and check the <a href="https://github.com/lucienlazar/plsql-application-locking/blob/main/demo.sql">demo.sql</a> script that contains examples of using the framework and handle different flows. The <a href="https://github.com/lucienlazar/plsql-application-locking/wiki/demo">demo page</a> in wiki contains more technical details about the flows in the testing scenarios.
 
 # License
 
