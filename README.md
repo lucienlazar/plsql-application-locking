@@ -6,6 +6,10 @@ PL/SQL Application Locking is a core PL/SQL framework that implements logical lo
 
 A multi-user application must control concurrency, the simultaneous access of the same data by many users, in order to ensure consistency and performance.
 
+# Problem
+
+In a multi-user environment it is easy to have concurrency issues. For instance, two or more users may need the same object at the same time. These concurency issues can be solved automatically by the database using database-level locking, but this may lead to stability issues and performance issues thatcan be very costly. 
+
 # Solution
 
 Instead of counting only on locks set by the database, it is more efficient to use explicit locking at application level. When the application starts a process that needs an object, we mark the object as locked manually at the correct point in time by explicit calls from the client. When the application finishes the process and does not need the object, it removes the lock. It is a simple and efficient usage of locking that reduces the database load and ensures consistency and performance.
