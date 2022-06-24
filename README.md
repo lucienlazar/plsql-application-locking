@@ -38,7 +38,7 @@ You can download and check the <a href="https://github.com/lucienlazar/plsql-app
 
 You can download and integrate free the plsql-application-locking framework in your PL/SQL code and in your application. 
 
-# Need a consultant?
+# Need a Consultant?
 
 Contact me on my website https://www.lucianlazar.com/ for any consulting enquiries. 
 
