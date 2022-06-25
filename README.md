@@ -1,6 +1,6 @@
 # PL/SQL Application Locking
 
-PL/SQL Application Locking is a core PL/SQL framework that implements logical locking of objects at application level for applications that use Oracle databases. You can download and integrate it free in your application. For a custom and complex implementation please check the <a href="https://github.com/lucienlazar/plsql-application-locking#need-a-consultant">Need a Consultant?</a> section and contact me at https://www.lucianlazar.com/.
+PL/SQL Application Locking is a core PL/SQL framework that implements logical locking of objects at application level for applications that use Oracle databases. You can download and integrate it free in your application that uses Oracle databases or translate it for Microsoft, Postgres or other databases. For a custom and complex implementation please check the <a href="https://github.com/lucienlazar/plsql-application-locking#need-a-consultant">Need a Consultant?</a> section and contact me at https://www.lucianlazar.com/.
 
 # Context
 
@@ -26,7 +26,7 @@ The <a href="https://github.com/lucienlazar/plsql-application-locking/wiki/Appli
 
 # Download and Install
 
-You can download and run the <a href="https://github.com/lucienlazar/plsql-application-locking/blob/main/objects.sql">objects.sql</a> script that creates all the objects contained by the framework. For technical details about the usage of all procedures check the <a href="https://github.com/lucienlazar/plsql-application-locking/wiki/Objects">objects page</a> in wiki. You will need to have access to an Oracle database to run the script there.
+You can download and run the <a href="https://github.com/lucienlazar/plsql-application-locking/blob/main/objects.sql">objects.sql</a> script that creates all the objects contained by the framework. For technical details about the usage of all procedures check the <a href="https://github.com/lucienlazar/plsql-application-locking/wiki/Objects">objects page</a> in wiki. You will need to have access to an Oracle database to run the script there or you can translate it for Microsoft, Postgres or other databases.
 
 You can replace the process runs table and the processing package with existing objects in your application and replace their references in the application locking package. 
 
