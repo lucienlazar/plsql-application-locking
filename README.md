@@ -12,7 +12,7 @@ In a multi-user environment it is easy to have concurrency issues. For instance,
 
 # Solution
 
-Instead of counting only on locks set by the database, it is more efficient to use explicit locking at application level. When the application starts a process that needs an object, we mark the object as locked manually at the correct point in time by explicit calls from the client. When the application finishes the process and does not need the object, it removes the lock. It is a simple and efficient usage of locking that reduces the database load and ensures consistency and performance.
+Instead of setting locks at database level, it is more efficient to use explicit locking at application level by adding a new layer where we set the application locks. When the application starts a process that needs an object, we mark the object as locked manually at the correct point in time by explicit calls from the client. When the application finishes the process and does not need the object, it removes the lock. It is a simple and efficient usage of locking that reduces the database load and ensures consistency and performance.
 
 # PL/SQL Application Locking Framework
 
