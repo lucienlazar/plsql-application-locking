@@ -40,10 +40,8 @@ You can download and integrate free the plsql-application-locking framework in y
 
 # Need a Consultant?
 
-Contact me on my website https://www.lucianlazar.com/ for any consulting enquiries. 
-
-I can provide custom and complex implementations with advanced features like:
+Contact me on my website https://www.lucianlazar.com/ and I can provide custom and complex implementations of PL/SQL Application Locking with advanced features like:
 * extended acquire lock procedure with serializing access to resources, handling concurrency issues, adding retry modes and exception handling
-* change lock procedure that allows upgrading or downgrading a lock
-* extended procedure to release orphan locks on resource including exception handling, performance tweaks and more possible release conditions
-* release all orphan locks procedure, called as part of a clean-up process in case of emergency.
+* new change lock procedure that allows upgrading or downgrading a lock
+* extended release orphan locks procedure with exception handling, performance tweaks and more possible release conditions
+* new release all orphan locks procedure included in clean-up process ran in case of database recovery.
