@@ -1,18 +1,18 @@
 # PL/SQL Application Locking
 
-PL/SQL Application Locking is a core PL/SQL framework that implements logical locking of objects at application level for applications that use Oracle databases. You can download and integrate it free in your application or translate it for Microsoft, Postgres or other databases. For a custom and complex implementation please check the <a href="https://github.com/lucienlazar/plsql-application-locking#need-a-consultant">Need a Consultant?</a> section and contact me at https://www.lucianlazar.com/.
+PL/SQL Application Locking is a core PL/SQL framework that implements logical locking of objects at application level for applications that use Oracle databases. You can download and integrate it free in your application or translate it for Microsoft, Postgres or other databases. For a custom and complex implementation please check the <a href="https://github.com/lucienlazar/plsql-application-locking#nextended-functionality">Extended Functionality</a> section and contact me at https://www.lucianlazar.com/.
 
-# Context
+# Why Application Locking?
 
-A multi-user application must control concurrency, the simultaneous access of the same data by many users, in order to ensure consistency and performance.
+You may wonder why I developed such a framework for application locking. Especially when all major databases, including Oracle, have their own locking mechanisms.
 
-# Problem
+It started – as most performance problems do – with a slow application. It was a multi-user application with a few hundred users, most of the time conccurent, that processed big amounts of data. Sometimes the users complained about long processing times or even errors. After a lot of tracing I found not only a lot of wait events, but also several deadlocks per day. The database locking mechanism was heavy loaded with conccurency issues caused by parallel processing of the common entities. The database could not solve automatically all this processing with database-level locking, causing stability issues, performance issues and generally client insatisfaction.
 
-In a multi-user environment it is easy to have concurrency issues. For instance, two or more users may need the same object at the same time. These concurency issues can be solved automatically by the database using database-level locking, but this may lead to stability issues and performance issues thatcan be very costly. 
+I needed a solution to decrease the load on the database, especially on the database-level locking. In the end the solution was simple: if this causes problems then let’s stop using it and replace it with something else.
 
-# Solution
+And this is how I developed this explicit locking at application level by adding a new layer where the application sets the locks. When the application starts a process that needs an object, it marks the object in the new layer as locked. When the application finishes the process and does not need the object anymore, it removes the lock from that layer. It is a simple and efficient usage of logical locking that reduces the load on the database-level locking, reduces the database load altogether and ensures consistency and performance.
 
-Instead of setting locks at database level, it is more efficient to use explicit locking at application level by adding a new layer where we set the application locks. When the application starts a process that needs an object, we mark the object as locked manually at the correct point in time by explicit calls from the client. When the application finishes the process and does not need the object, it removes the lock. It is a simple and efficient usage of locking that reduces the database load and ensures consistency and performance.
+For that application the solution performed very well. Replacing database-level locking with application locking removed almost completely the deadlocks and the waits and made the application faster and more stable.
 
 # PL/SQL Application Locking Framework
 
@@ -32,16 +32,31 @@ You can replace the process runs table and the processing package with existing 
 
 # Demo
 
-You can download and check the <a href="https://github.com/lucienlazar/plsql-application-locking/blob/main/demo.sql">demo.sql</a> script that contains examples of using the framework and handle different flows. The <a href="https://github.com/lucienlazar/plsql-application-locking/wiki/demo">demo page</a> in wiki contains more technical details about the flows in the testing scenarios.
+You can download and check the <a href="https://github.com/lucienlazar/plsql-application-locking/blob/main/demo.sql">demo.sql</a> script that contains examples of using the framework and handle different flows. The demo contains all the flows of using the PL/SQL Application Locking framework with different scenarios for acquire locks, release locks and release orphan locks. The <a href="https://github.com/lucienlazar/plsql-application-locking/wiki/demo">demo page</a> in wiki contains more technical details about the flows in the testing scenarios.
+
+### Acquire Locks
+
+We start two process runs and set different application locks on two tables for these two processes. Only one process can set a write exclusive application lock on a table at a time to write in it and two parallel processes can set shared application locks on the same table at the same time to read from it.
+
+### Release Locks
+
+We complete the two process runs and release the application locks for one of these two processes. The first process completes successfully and releases its locks, while the second process fails and does not release its locks, leaving behind an orphan lock in the system.
+
+### Release Orphan Locks
+
+We start a third process that needs to use a table which remained locked by another completed process and see how it releases that orphan lock. After failing to acquire a lock on the table already locked, the third process checks the locks on that resource, confirms that there is an orphan lock and releases it. After the orphan lock is released, the third process will be able to acquire the lock on the table.
 
 # License
 
 You can download and integrate free the plsql-application-locking framework in your PL/SQL code and in your application. 
 
-# Need a Consultant?
+# Extended Functionality
 
-Contact me on my website https://www.lucianlazar.com/ and I can provide custom and complex implementations of PL/SQL Application Locking with advanced features like:
-* extended acquire lock procedure with serializing access to resources, handling concurrency issues, adding retry modes and exception handling
-* new change lock procedure that allows upgrading or downgrading a lock
-* extended release orphan locks procedure with exception handling, performance tweaks and more possible release conditions
-* new release all orphan locks procedure included in clean-up process ran in case of database recovery.
+For a custom implementation with high concurency that needs high performance and stability we can extend its functionality with advanced features like:
+
+* extended acquire lock mechanism with serializing access to resources, retry modes and exception handling
+* upgrade and downgrade lock mechanism
+* extended release orphan locks mechanism with exception handling, performance tweaks and more possible release conditions
+* release all orphan locks mechanism included in a clean-up process ran in case of database recovery.
+
+Contact me on my website https://www.lucianlazar.com/ and we can collaborate to tailor the framework to your specific needs.
