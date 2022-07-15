@@ -4,7 +4,7 @@ PL/SQL Application Locking is a core PL/SQL framework that implements logical lo
 
 # Why Application Locking?
 
-In multi-user application with lots of conccurent users that process big amounts of data, we can get wait events and deadlocks because the database-level locking can't handle the load. To decrease the load on the database, we can add a new layer in front of database-level locking where the application sets the locks. When the application starts a process that needs an object, it marks the object in the new layer as locked. When the application finishes the process and does not need the object anymore, it removes the lock from that layer. It is a simple and efficient usage of logical locking that reduces the load on the database-level locking, reduces the database load altogether and ensures consistency and performance.
+In multi-user applications with lots of conccurent users that process big amounts of data, we can get wait events and deadlocks because the database-level locking can't handle the load. To decrease the load on the database, we can add a new layer in front of the database-level locking where the application sets the locks. When the application starts a process that needs an object, it marks the object in the new layer as locked. When the application finishes the process and does not need the object anymore, it removes the lock from that layer. It is a simple and efficient usage of logical locking that reduces the load on the database-level locking, reduces the database load altogether and ensures consistency and performance.
 
 # PL/SQL Application Locking Framework
 
