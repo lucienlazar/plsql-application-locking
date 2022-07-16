@@ -6,7 +6,23 @@ PL/SQL Application Locking is a core PL/SQL framework that implements logical lo
 
 In multi-user applications with lots of conccurent users that process big amounts of data, we can get wait events and deadlocks because the database-level locking can't handle the load. To decrease the load on the database, we can add a new layer in front of the database-level locking where the application sets the locks. When the application starts a process that needs an object, it marks the object in the new layer as locked. When the application finishes the process and does not need the object anymore, it removes the lock from that layer. It is a simple and efficient usage of logical locking that reduces the load on the database-level locking, reduces the database load altogether and ensures consistency and performance.
 
-# PL/SQL Application Locking Framework
+# How It Works
+
+The application locking has a similar logic as the database-level locking, with the essential difference that it’s a separate layer used before the database locking.
+
+When the application starts a process that needs to write in a table, it sets an exclusive lock on that table. If a second process needs to write in the same table, it has to wait till the first process completes and removes the lock. After that, the second process can set another exclusive lock on the table.
+
+![image](https://user-images.githubusercontent.com/11984161/179343289-46743e6b-381d-4851-9975-e4ab8a71918a.png)
+
+If the first process only needs to read from the table, it sets a shared lock on that table. If the second process also needs only to read from the same table, it does not have to wait till the first process is completed. The second process can set another shared lock on the table immediately and the two process can read in parallel from the same table.
+
+![image](https://user-images.githubusercontent.com/11984161/179343294-f0c36041-bdd4-4362-9770-dd703a3ebcd9.png)
+
+The normal flow for a process is to complete successfully and remove its locks. But sometimes a process might fail and leave orphan locks in the system. In this scenario, a third process cannot set a lock on that table. First, it must first release the orphan lock left by the failed process and only then it can set its own lock.
+
+![image](https://user-images.githubusercontent.com/11984161/179343299-907388ce-e507-4ddb-8b71-263b2a69b52f.png)
+
+# Content of the Framework
 
 The framework consists in two tables: process runs and application locks and two packages: processing and application locking. This section explains the essential characteristics of the objects and has links to the <a href="https://github.com/lucienlazar/plsql-application-locking/wiki">wiki</a> with technical details of the structure, parameters and logic.
 
