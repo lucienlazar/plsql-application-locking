@@ -1,6 +1,6 @@
 # PL/SQL Application Locking
 
-PL/SQL Application Locking is a core PL/SQL framework that implements logical locking of objects at application level for applications that use Oracle databases. You can download and integrate it free in your application or translate it for Microsoft, Postgres or other databases. For a custom and complex implementation please check the <a href="https://github.com/lucienlazar/plsql-application-locking#nextended-functionality">extended functionality</a> section and contact me on <a href="https://www.lucianlazar.com/application-locking/">me website</a>.
+PL/SQL Application Locking is a core PL/SQL framework that implements logical locking of objects at application level for applications that use Oracle databases. You can download and integrate it free in your application or translate it for Microsoft, Postgres or other databases. For a custom and complex implementation please check the <a href="https://github.com/lucienlazar/plsql-application-locking#nextended-functionality">extended functionality</a> section and contact me on <a href="https://www.lucianlazar.com/application-locking/" target="_blank">my website</a>.
 
 # Why Application Locking?
 
